@@ -3,22 +3,25 @@ import requests
 from collections import defaultdict
 
 
-def convert_ids(list_of_ids, input_id="DOI", output_id="PMCID"):
+def convert_ids(list_of_ids, input_id="DOI", output_id="PMCID", return_type="list"):
     """
-    Obtains a list of QIDs from Wikidata given a list of Pubmed IDs.
-    The list is sorted by publication date, newest first.
+    Obtains a list of output IDs from Wikidata given a list of input IDs.
     Args:
         list_of_ids (list): A list of IDs as strings.
         input_id (str): The kind of IDs in the input. One of ["PMID", "PMCID", "QID" or "DOI"]
         output_id (str): The kind of IDs to be returned in the output. One of ["PMID", "PMCID", "QID" or "DOI"]
+        return_type (str): One of "list" or "data.frame". If "DataFrame", the output includes a column with the input data.
 
     Returns:
         (list): A list with the target IDs.
+        OR
+        (DataFrame): A pandas Data
     """
 
     id2property = {"PMCID": "P932", "DOI": "P356", "PMID": "P698"}
     values = ""
 
+    list_of_ids = [str(i).upper() for i in list_of_ids]
     if input_id == "QID":
         for id in list_of_ids:
             values = values + f' "wd:{id}"'

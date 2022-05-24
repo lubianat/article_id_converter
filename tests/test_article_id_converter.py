@@ -35,3 +35,11 @@ def test_converter_4():
 
     result_qids = convert_ids(pmids, input_id="PMID", output_id="QID")
     assert result_qids == qids
+
+
+def test_converter_5():
+    dois = ["10.3897/zookeys.150.2189"]
+    qids = ["Q20895780"]
+
+    result_qids = convert_ids(dois, input_id="DOI", output_id="QID")
+    assert result_qids == qids
