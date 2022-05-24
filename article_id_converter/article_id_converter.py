@@ -12,7 +12,7 @@ def convert_ids(list_of_ids, input_id="DOI", output_id="PMCID", return_type="lis
     Args:
         list_of_ids (list): A list of IDs as strings.
         input_id (str): The kind of IDs in the input. One of ["PMID", "PMCID", "WIKIDATA" or "DOI"]
-        output_id (str): The kind of IDs to be returned in the output. One of ["PMID", "PMCID", "QID" or "DOI"]
+        output_id (str): The kind of IDs to be returned in the output. One of ["PMID", "PMCID", "WIKIDATA" or "DOI"]
         return_type (str): One of "list" or "data.frame". If "DataFrame", the output includes a column with the input data.
 
     Returns:
@@ -85,4 +85,5 @@ def convert_ids(list_of_ids, input_id="DOI", output_id="PMCID", return_type="lis
     return [mappings[k] for k in list_of_ids]
 
 
-convert_ids("10.1093/NAR/GKAB991 10.7554/ELIFE.52614 10.1177/1534508417745627".split())
+if __name__ == "__main__":
+    print(convert_ids("10.1093/NAR/GKAB991 10.7554/ELIFE.52614 10.1177/1534508417745627".split()))
